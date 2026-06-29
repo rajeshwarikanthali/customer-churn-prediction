@@ -1,0 +1,12 @@
+{
+  "include": [
+    "app",
+    "src",
+    "train.py"
+  ],
+  "extraPaths": [
+    "."
+  ],
+  "typeCheckingMode": "basic",
+  "reportMissingTypeStubs": false
+}
