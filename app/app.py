@@ -1,6 +1,19 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+import os
+
+st.set_page_config(
+    page_title="Telecom Retention Desk",
+    page_icon=":bar_chart:",
+    layout="wide",
+    initial_sidebar_state="expanded",
+)
+
+print("=" * 50)
+print("app.py started")
+print("PID:", os.getpid())
+print("=" * 50)
 
 try:
     from app.predict import (
@@ -21,13 +34,6 @@ except ModuleNotFoundError:
         risk_band,
     )
 
-
-st.set_page_config(
-    page_title="Telecom Retention Desk",
-    page_icon=":bar_chart:",
-    layout="wide",
-    initial_sidebar_state="expanded",
-)
 
 
 CUSTOM_CSS = """
@@ -478,10 +484,12 @@ metrics = cached_metrics()
 with st.sidebar:
     st.title("Retention Desk")
     st.caption("Telecom churn project")
+    print("Before radio")
     page = st.radio(
-        "Choose what you want to do",
-        ["Overview", "Predict one customer", "Batch CSV scoring", "Risk patterns"],
-    )
+    "Choose what you want to do",
+    ["Overview", "Predict one customer", "Batch CSV scoring", "Risk patterns"],
+    key="sidebar_page_selector",
+)
     st.divider()
     st.caption("Model ready")
     st.caption("Inputs: 7 practical fields")
